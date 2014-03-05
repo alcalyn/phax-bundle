@@ -2,8 +2,8 @@
     "name":         "phax/phax-bundle",
     "license":      "MIT",
     "type":         "symfony-bundle",
-    "description":  "The Phax standards files",
-    "keywords":     ["php", "ajax"],
+    "description":  "A php/javascript symfony2 bundle which provide a structure for ajax calls",
+    "keywords":     ["php", "ajax", "symfony2"],
     "authors": [
         {
             "name": "Julien Maulny",
