@@ -1,0 +1,53 @@
+
+        Phax help page.
+
+This command allow you to use phax action in command line.
+    Format:
+
+        phax:action [controller] [action] [-p|--parameters[="..."]]
+
+
+    controller:
+        The name of your controller ("help", ...)
+        default is "help"
+
+
+    action:
+        The name of the action to call ("test", "ping", ...)
+        Will call testAction, pingAction...
+        default is "default"
+
+
+    --parameters:
+        Parameters to send to your controller.
+        Default is empty array.
+        Exemple :
+
+            -p key1:value1 -p key2:value2
+
+        Will send Array([key1] => value1, [key2] => value2)
+        You can send multiple parameters.
+
+            -p boolkey
+
+        Will send Array([boolkey] => true)
+
+
+
+Examples:
+
+    php app/console phax:action
+        =>
+            displays this page.
+
+
+    php app/console phax:action people add -p firstname:tyler -p lastname:durden
+        =>
+            Call PeopleController::addAction(array $params); with
+                firstname and lastname parameters in $params.
+            /!\ Important:
+                - PeopleController must be declared as service named "phax.people".
+                - PeopleController::addAction() must return a PhaxReaction.
+                    You can use return $this->get('phax')->reaction(array);
+                    in your controller.
+                    See PhaxService.

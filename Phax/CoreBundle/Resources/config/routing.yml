@@ -1,0 +1,5 @@
+phax_script:
+    pattern:  /phax
+    defaults: { _controller: PhaxCoreBundle:Phax:phax }
+    requirements:
+        _method:  POST

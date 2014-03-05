@@ -1,0 +1,16 @@
+{
+    "name": "phax/phax-bundle",
+    "license": "MIT",
+    "type": "project",
+    "description": "The Phax standards files",
+    "authors": [
+        {
+            "name": "Julien Maulny",
+            "email": "doubjulien@hotmail.fr",
+            "homepage": "http://my-contraste.com/julien-maulny/www/‎"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    }
+}

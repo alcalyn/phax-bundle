@@ -1,0 +1,26 @@
+parameters:
+
+services:
+    phax:
+        class: Phax\CoreBundle\Services\PhaxService
+        calls:
+            - [setContainer, ["@service_container"]]
+
+    phax_core:
+        class: Phax\CoreBundle\Services\PhaxCoreService
+        calls:
+            - [setContainer, ["@service_container"]]
+#        tags:
+#            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
+
+    phax.help:
+        class: Phax\CoreBundle\Controller\HelpController
+        calls:
+            - [setContainer, ["@service_container"]]
+
+    phax.command.phax_action:
+        class: Phax\CoreBundle\Command\ActionCommand
+        tags:
+            -  { name: console.command }
+        calls:
+            - [setContainer, ["@service_container"]]
