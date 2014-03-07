@@ -19,8 +19,8 @@ class HelpController extends Controller
         $isCli = $phaxAction->isCli();
         
         $pageTemplate = $isCli ?
-                'CoreBundle:Help:help_page.cli.twig' :
-                'CoreBundle:Help:help_page.web.twig' ;
+                'PhaxCoreBundle:Help:help_page.cli.twig' :
+                'PhaxCoreBundle:Help:help_page.web.twig' ;
         
         $pageContent = $this
                 ->render($pageTemplate)
