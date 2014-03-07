@@ -37,7 +37,7 @@ public function addAction(PhaxAction $phaxAction)
 This will make phax javascript side not calling the callback,
 and avoid a js error if phax not find the reaction.
 
-** Notice: **
+**Notice:**
 > The js reaction is enabled by default.
 
 

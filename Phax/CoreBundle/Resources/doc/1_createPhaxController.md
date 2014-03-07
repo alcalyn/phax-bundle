@@ -62,7 +62,7 @@ class CommentAjaxController extends Controller
 }
 ```
 
-** Warning: **
+**Warning:**
 > You MUST use argument typing `PhaxAction` to notify Phax to pass the whole action
 
 
@@ -72,11 +72,15 @@ class CommentAjaxController extends Controller
 public function addAction($message, $author) {}
 ```
 
-The second method is usefull to use a same action for phax calls, or normal symfony route,
+The first method allows you to access, in addition to sent parameters from user,
+[PhaxAction](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Model/PhaxAction.php)
+metadata, such as request, cli mode or not, request locale...
+
+The second method is usefull to use a same action for phax calls, and normal symfony route,
 we will see that later, in [Make a same action callable with phax AND symfony default route](4_multiController.md)
 
-** Notice: **
-> You can combine the two methods
+**Notice:**
+> You can combine the two methods, and the order is not important
 
 
 ### Return a PhaxReaction
@@ -84,7 +88,7 @@ we will see that later, in [Make a same action callable with phax AND symfony de
 Now you have a callable action, you cannot use normal `return $this->render();`
 because it returns a full http response we don't need.
 
-In a phaxAction, you must return a `PhaxReaction`.
+In a phaxAction, you must return a [PhaxReaction](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Model/PhaxReaction.php).
 
 ``` php
 /**
@@ -121,9 +125,43 @@ public function addAction(PhaxAction $phaxAction)
 }
 ```
 
-
 Done ! your action is correct, you get $phaxAction arguments,
-and returns a PhaxReaction object.
+and returns a [PhaxReaction](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Model/PhaxReaction.php) object.
+
+
+#### Use of phax service
+
+[PhaxService](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Services/PhaxService.php)
+is a [PhaxReaction](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Model/PhaxReaction.php)
+factory.<br />
+You can use it to not repeat a portion of code
+(create a [PhaxReaction](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Model/PhaxReaction.php),
+set some parameters, add errors, return it...).
+
+The service id is "phax".
+
+There you have some reaction you should use often:
+
+``` php
+// simple reaction with parameters
+return $this->get('phax')->reaction(array(
+    'success'   => true,
+));
+```
+
+``` php
+// error reaction
+return $this->get('phax')->error('The error message');
+```
+
+``` php
+// a reaction with no callback
+return $this->get('phax')->void();
+```
+
+See others reaction from [PhaxService](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Services/PhaxService.php).
+
+You have here a working phax controller.
 
 One thing is missing, register your controller as a phax controller.
 
