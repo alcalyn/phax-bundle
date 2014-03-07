@@ -26,7 +26,7 @@ class PhaxCoreExtension extends Extension
         $loader->load('services.yml');
         
         $aAsseticBundle = $container->getParameter('assetic.bundles');
-        $aAsseticBundle[] = 'PhaxBundle';
+        $aAsseticBundle[] = 'PhaxCoreBundle';
         $container->setParameter('assetic.bundles', $aAsseticBundle);
     }
 }
