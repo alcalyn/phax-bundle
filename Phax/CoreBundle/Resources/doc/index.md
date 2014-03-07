@@ -6,7 +6,12 @@ Create a controller, declare it as a service, and you can call its action from j
 
 ## Prerequisites
 
-This version of the bundle requires Symfony2, and PHP >= 5.4.0
+This version of the bundle requires
+
+- Symfony2
+- PHP >= 5.4.0
+- jQuery (jQuery.post function)
+
 
 ## Installation
 
@@ -46,7 +51,7 @@ public function registerBundles()
 
 ### Step 3: Register Phax route
 
-Phax needs to register one route: its controller then every Phax Action will be called.
+Phax needs to register one route: its controller used for every ajax call.
 
 ``` yml
 #app/routing.yml
@@ -62,7 +67,7 @@ Add this block at the end of your html template.
 
 Twig:
 
-``` twig
+``` html
 {# Phax integration #}
 {% javascripts
     '@PhaxCoreBundle/Resources/public/js/*'
@@ -77,7 +82,10 @@ Twig:
 {# END Phax integration #}
 ```
 
+**Note:**
 
+> If your application does not use jQuery yet, add the library yourself by adding this line:
+> `<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>`
 
 
 ## Voilà ! phax is now installed.

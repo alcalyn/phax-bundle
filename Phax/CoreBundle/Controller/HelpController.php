@@ -39,7 +39,6 @@ class HelpController extends Controller
      */
     public function testAction(PhaxAction $phaxAction)
     {
-        $a = 1 / (2 - 2);
         $data = $phaxAction->jsonSerialize();
         $data['phaxAction_metadata'] = $data['phax_metadata'];
         
