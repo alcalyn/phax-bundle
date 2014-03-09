@@ -3,33 +3,32 @@ Create a phax controller
 
 ### What is a phax controller ?
 
-A phax controller is, like symfony do, a class/method identified as this:
+A phax controller is, like symfony do, a class which contains methods.
 
-    controller/action
+    CommentController::addAction
 
-- _controller_ is the name of your class, following symfony standards (XxxController)
-- _action_ is the name of your method, following symfony standards (doSomethingAction)
+Phax follows symfony naming conventions for controller and action name.
 
 
 #### Server-side
 
 A phax controller...
 
-- is a symfony service.
-- contains actions such as symfony action's.
+- is a symfony controller registered as a service.
+- contains actions.
 
 
 #### Client-side
 
 A phax controller...
 
-- contains callbacks for actions which need post processing in javascript, named `doSomethingReaction`.
+- contains callbacks for actions which need post processing in javascript.
 
 
 ## Create a phax controller
 
 For example, we start from the point that you have a comment system,
-and you want that users can send a comment asyncronously.
+and you want that users can send a comment asynchronously.
 
 ### Create a controller
 
@@ -39,14 +38,13 @@ The name of the class is not important.
 
 ### Create an action
 
-Now, you want to create an addAction, to add a comment asyncronously.
+Now, you want to create an addAction, to add a comment asynchronously.
 
-You have 2 ways to create a phax action:
-
-- By getting the whole $phaxAction object which contains all arguments:
+The simplest signature you can use for your action is:
 
 ``` php
 <?php
+// Acme\CommentBundle\Controller\CommentAjaxController.php
 
 namespace Acme\CommentBundle\Controller;
 
@@ -56,43 +54,50 @@ use Phax\CoreBundle\Model\PhaxAction; // I bet you just forgot
 class CommentAjaxController extends Controller
 {
     /**
-     * Add a comment asyncronously
+     * Add a comment asynchronously
      */
     public function addAction(PhaxAction $phaxAction) {}
 }
 ```
 
+Like this, you get the whole instance containing sent parameters from client,
+and metadata such as request, controller and action name...
+
 **Warning:**
-> You MUST use argument typing `PhaxAction` to notify Phax to pass the whole action
+> You MUST type your argument to notify phax to pass the whole instance of
+> [PhaxAction](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Model/PhaxAction.php).
 
-
-- By getting only the parameters you want:
+<br />
+Another possible signature is just to put arguments you need.<br />
+If they are named the same as your parameters you receive from request,
+phax will call your action by passing the goods parameters to the goods arguments.<br />
+The order of arguments is not important.
 
 ``` php
 public function addAction($message, $author) {}
 ```
 
-The first method allows you to access, in addition to sent parameters from user,
-[PhaxAction](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Model/PhaxAction.php)
-metadata, such as request, cli mode or not, request locale...
-
-The second method is usefull to use a same action for phax calls, and normal symfony route,
-we will see that later, in [Make a same action callable with phax AND symfony default route](4_multiController.md)
+This second method is usefull to reuse a same action for phax calls.<br />
+We will see that later, in [Make a same action callable with phax AND symfony default route](4_multiController.md)
 
 **Notice:**
-> You can combine the two methods, and the order is not important
+> You can combine the two methods, and the order is not important.
 
 
 ### Return a PhaxReaction
 
 Now you have a callable action, you cannot use normal `return $this->render();`
-because it returns a full http response we don't need.
+because it returns a full symfony response we don't need.
 
-In a phaxAction, you must return a [PhaxReaction](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Model/PhaxReaction.php).
+In a phaxAction, you must return a
+[PhaxReaction](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Model/PhaxReaction.php).
 
 ``` php
+// Acme\CommentBundle\Controller\CommentAjaxController.php
+
+
 /**
- * Add a comment asyncronously
+ * Add a comment asynchronously
  */
 public function addAction(PhaxAction $phaxAction)
 {
@@ -125,18 +130,16 @@ public function addAction(PhaxAction $phaxAction)
 }
 ```
 
-Done ! your action is correct, you get $phaxAction arguments,
+Done ! your action is correct, you get $phaxAction intstance,
 and returns a [PhaxReaction](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Model/PhaxReaction.php) object.
 
 
 #### Use of phax service
 
-[PhaxService](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Services/PhaxService.php)
-is a [PhaxReaction](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Model/PhaxReaction.php)
-factory.<br />
-You can use it to not repeat a portion of code
-(create a [PhaxReaction](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Model/PhaxReaction.php),
-set some parameters, add errors, return it...).
+Phax provide a
+[PhaxReaction](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Model/PhaxReaction.php)
+factory :
+[PhaxService](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Services/PhaxService.php).
 
 The service id is "phax".
 
@@ -159,7 +162,8 @@ return $this->get('phax')->error('The error message');
 return $this->get('phax')->void();
 ```
 
-See others reaction from [PhaxService](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Services/PhaxService.php).
+See others reactions in
+[PhaxService](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Services/PhaxService.php).
 
 You have here a working phax controller.
 
@@ -174,10 +178,12 @@ But phax use a simple naming convention for the service name:
 
     phax.[controller name]
 
-For example, if you want to register your comment controller as a phax controller
-to send comment asyncronously, you should use this:
+For example,
+if you want to register your comment controller as a phax controller,
+you should use this:
 
 ``` yml
+# src/Acme/CommentBundle/Resources/service.yml
 services:
     phax.comment:
         class: Acme\CommentBundle\Controller\CommentAjaxController
@@ -186,6 +192,10 @@ services:
 ```
 
 Now, phax know your controller as "comment" controller, and have an action, "addAction".
+
+**Notice:**
+> I inject the whole container here,
+> but sometimes you may prefer inject just some services you need.
 
 
 The next step learn you how to call this action from your web client.
@@ -196,3 +206,14 @@ The next step learn you how to call this action from your web client.
 You can also call this action from command line (usefull for cron tasks).
 
 [Call a phax Controller from command line](3_callControllerCli.md)
+
+
+### Links
+
+- [Index](https://github.com/alcalyn/phax-bundle)
+- [Installation](index.md)
+- [Create a phax Controller](1_createPhaxController.md)
+- [Call a phax Controller from web client](2_callControllerWeb.md)
+- [Call a phax Controller from command line](3_callControllerCli.md)
+- [Make a same action callable with phax AND symfony default route](4_multiController.md)
+- [Tips](5_tips.md)

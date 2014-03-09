@@ -48,6 +48,11 @@ public function registerBundles()
 }
 ```
 
+**Note:**
+
+> If you intend to use phax to use only command line,
+> your don't need following steps.
+
 
 ### Step 3: Register Phax route
 
@@ -82,7 +87,7 @@ Twig:
 {# END Phax integration #}
 ```
 
-**Note:**
+**Warning:**
 
 > If your application does not use jQuery yet, add the library yourself by adding this line:
 > `<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>`
@@ -111,5 +116,6 @@ Now phax is working, you can create your own ajax controllers for your ajax appl
 - [Call a phax Controller from web client](2_callControllerWeb.md)
 - [Call a phax Controller from command line](3_callControllerCli.md)
 - [Make a same action callable with phax AND symfony default route](4_multiController.md)
+- [Tips](5_tips.md)
 
 
