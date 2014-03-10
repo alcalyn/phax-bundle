@@ -8,9 +8,9 @@ Create a controller, declare it as a service, and you can call its action from j
 
 This version of the bundle requires
 
-- Symfony2
+- Symfony >= 2.3
 - PHP >= 5.4.0
-- jQuery (jQuery.post function)
+- jQuery >= 1.5 (jQuery.post function)
 
 
 ## Installation
@@ -50,7 +50,7 @@ public function registerBundles()
 
 **Note:**
 
-> If you intend to use phax to use only command line,
+> If you intend to use phax to only call your actions from command line,
 > your don't need following steps.
 
 

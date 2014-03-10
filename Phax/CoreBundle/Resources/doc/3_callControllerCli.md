@@ -10,7 +10,14 @@ $ php app/console phax:action controller action -p param1:value1 -p param2:value
 ```
 
 This line display the json reaction of the array your controller return,
-and some metadata from phax.
+and some metadata from phax, something like that:
+
+``` bash
+$ php app/console phax:action controller action -p param1:value1 -p param2:value2
+{"success":true,"responseParam":"responseValue","phax_metadata":{"has_error":false,"errors":[],"trigger_js_reaction":true,"message":null}}
+```
+
+You can display a message instead of raw json.
 
 
 ### Use meta message
@@ -22,14 +29,15 @@ If a message is set, it will be displayed in command line as response.
 
 ``` php
 // Acme\CommentBundle\Controller\CommentAjaxController.php
-public function deleteOldCommentsAction(PhaxAction $phaxAction)
+
+public function deleteOldCommentsAction($date)
 {
     // ...
 
 	$phaxReaction = new PhaxReaction();
 
     // This will disable the javascript callback
-    $phaxReaction->setMetaMessage('Old comments have been deleted.');
+    $phaxReaction->setMetaMessage('Old comments have been deleted: '.$queryResult);
 
     return $phaxReaction;
 }
@@ -39,11 +47,11 @@ Which is equivalent to:
 
 ``` php
 // Acme\CommentBundle\Controller\CommentAjaxController.php
-public function deleteOldCommentsAction(PhaxAction $phaxAction)
+public function deleteOldCommentsAction($date)
 {
     // ...
 
-	return $this->get('phax')->metaMessage('Old comments have been deleted.');
+	return $this->get('phax')->metaMessage('Old comments have been deleted: '.$queryResult);
 }
 ```
 
@@ -53,19 +61,20 @@ public function deleteOldCommentsAction(PhaxAction $phaxAction)
 To call `deleteOldCommentsAction`:
 
 ``` bash
-$ php app/console phax:action comment deleteOldComments
+$ php app/console phax:action comment deleteOldComments -p date:2014-06-05
 ```
 
 Will output:
 
 ``` bash
-$ php app/console phax:action comment deleteOldComments
-Old comments have been deleted.
+$ php app/console phax:action comment deleteOldComments -p date:2014-06-05
+Old comments have been deleted: 3
 $ 
 ```
 
 **Notice:**
-> The deleteOldComments works also in ajax, the meta message is accessible from r.phax_metadata.message
+> The deleteOldComments action works also in ajax,
+> and the meta message is accessible from r.phax_metadata.message
 
 
 ### Links
