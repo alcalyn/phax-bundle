@@ -48,11 +48,6 @@ public function registerBundles()
 }
 ```
 
-**Note:**
-
-> If you intend to use phax to only call your actions from command line,
-> your don't need following steps.
-
 
 ### Step 3: Register Phax route
 
@@ -63,6 +58,11 @@ Phax needs to register one route: its controller used for every ajax call.
 phax:
     resource: "@PhaxCoreBundle/Resources/config/routing.yml"
 ```
+
+**Note:**
+
+> If you intend to use phax to only call your actions from command line,
+> your don't need following step.
 
 
 ### Step 4: Javascript integration
