@@ -2,29 +2,29 @@ Getting started with Phax
 =========================
 
 This bundle help you to make a structured architecture for an ajax application under symfony2.
-Create a controller, declare it as a service, and you can call its action from javascript.
+Create a controller, declare it as a service, and you can call its action from javascript (or from command line).
 
 ## Prerequisites
 
 This version of the bundle requires
 
-- Symfony >= 2.3
-- PHP >= 5.4.0
+- Symfony2 >= 2.3
+- PHP 5 >= 5.4.0
 - jQuery >= 1.5 (jQuery.post function)
 
 
 ## Installation
 
-Installation is 4 steps, nothing very interesting...
+Installation is a 4 steps process, nothing very interesting...
 
 1. Download PhaxCoreBundle using composer
-2. Enable the Bundle
+2. Register the Bundle
 3. Register Phax route
 4. Javascript integration
 
 ### Step 1: Download PhaxCoreBundle using composer
 
-```js
+``` js
 {
     "require": {
         "phax/phax-bundle": "dev-master"
@@ -32,8 +32,10 @@ Installation is 4 steps, nothing very interesting...
 }
 ```
 
+Update your composer.
 
-### Step 2: Enable the Bundle
+
+### Step 2: Register the Bundle
 
 ``` php
 <?php

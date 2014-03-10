@@ -69,7 +69,7 @@ and metadata such as request, controller and action name...
 
 <br />
 Another possible signature is just to put arguments you need.<br />
-If they are named the same as your parameters you receive from request,
+If they are named the same as your parameters you receive from ajax request,
 phax will call your action by passing the goods parameters to the goods arguments.<br />
 The order of arguments is not important.
 
@@ -77,7 +77,7 @@ The order of arguments is not important.
 public function addAction($message, $author) {}
 ```
 
-This second method is usefull to reuse a same action for phax calls.<br />
+This second method is usefull to reuse an action you are actually using as a normal action for ajax calls.<br />
 We will see that later, in [Make a same action callable with phax AND symfony default route](4_multiController.md)
 
 **Notice:**
@@ -138,10 +138,10 @@ and returns a [PhaxReaction](https://github.com/alcalyn/phax-bundle/blob/master/
 
 Phax provide a
 [PhaxReaction](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Model/PhaxReaction.php)
-factory :
+factory:
 [PhaxService](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Services/PhaxService.php).
 
-The service id is "phax".
+The service id is "**phax**".
 
 There you have some reaction you should use often:
 
@@ -191,7 +191,7 @@ services:
             - [setContainer, ["@service_container"]]
 ```
 
-Now, phax know your controller as "comment" controller, and have an action, "addAction".
+Now, phax knows your controller as "**comment**" controller, and have an action, "**add**Action".
 
 **Notice:**
 > I inject the whole container here,
