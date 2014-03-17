@@ -24,7 +24,7 @@ public function listAction($page)
 {
 	// ...
 
-	// Return a phax reation with a success or failure notification
+	// Return a phax reation with a list of entities
 	return $this->get('phax')->reaction(array(
 		'comments'   => $comments,
 	));
@@ -83,9 +83,8 @@ return $this->get('phax')->reaction(array(
 ```
 
 
-Of course that controller is as well callable from command line (see
-[Call a phax Controller from command line](3_callControllerCli.md)
-).
+Of course that controller is as well callable from command line
+(see [Call a phax Controller from command line](3_callControllerCli.md)).
 
 See also some tips and trick about phax: [Tips](5_tips.md)
 
