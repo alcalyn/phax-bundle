@@ -78,7 +78,7 @@ public function addAction($message, $author) {}
 ```
 
 This second method is usefull to reuse an action you are actually using as a normal action for ajax calls.<br />
-We will see that later, in [Make a same action callable with phax AND symfony default route](4_multiController.md)
+We will see that later, in [Make a same action callable with phax AND symfony default route](4_hybridController.md)
 
 **Notice:**
 > You can combine the two methods, and the order is not important.
@@ -215,5 +215,5 @@ You can also call this action from command line (usefull for cron tasks).
 - [Create a phax Controller](1_createPhaxController.md)
 - [Call a phax Controller from web client](2_callControllerWeb.md)
 - [Call a phax Controller from command line](3_callControllerCli.md)
-- [Make a same action callable with phax AND symfony default route](4_multiController.md)
+- [Make a same action callable with phax AND symfony default route](4_hybridController.md)
 - [Tips](5_tips.md)
