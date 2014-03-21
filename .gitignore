@@ -1,6 +1,6 @@
-# Others
 composer.lock
 *~
+vendor/
 
 # Netbeans
 /nbproject/
