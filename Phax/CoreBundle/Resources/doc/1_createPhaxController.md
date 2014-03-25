@@ -134,7 +134,7 @@ Done ! your action is correct, you get $phaxAction intstance,
 and returns a [PhaxReaction](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Model/PhaxReaction.php) object.
 
 
-#### Use of phax service
+#### Use phax service
 
 Phax provide a
 [PhaxReaction](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Model/PhaxReaction.php)
