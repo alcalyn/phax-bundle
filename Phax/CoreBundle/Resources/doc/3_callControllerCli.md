@@ -2,8 +2,9 @@ Call your phax controller from command line
 ===========================================
 
 
-You have created an action in a phax controller,
-you want to call it from command line ?
+Assuming that you have a phax controller (if not, follow
+[Register your controller to be used by phax](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Resources/doc/1_createPhaxController.md#register-your-controller-to-be-used-by-phax)
+to have one), you can call its actions from command line by using:
 
 ``` bash
 $ php app/console phax:action controller action -p param1:value1 -p param2:value2
@@ -16,6 +17,15 @@ and some metadata from phax, something like that:
 $ php app/console phax:action controller action -p param1:value1 -p param2:value2
 {"success":true,"responseParam":"responseValue","phax_metadata":{"has_error":false,"errors":[],"trigger_js_reaction":true,"message":null}}
 ```
+
+
+**Notice:**
+> If you have the error
+> ```The controller controller::action must return an instance of Phax\CoreBundle\Model\PhaxReaction, Symfony\Component\HttpFoundation\Response returned```
+> that means that you do not return a phax reaction.
+> You should [Use phax service](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Resources/doc/1_createPhaxController.md#use-of-phax-service)
+> to return a phax reaction instead of a symfony response.
+
 
 You can display a message instead of raw json.
 
@@ -84,6 +94,6 @@ $
 - [Create a phax Controller](1_createPhaxController.md)
 - [Call a phax Controller from web client](2_callControllerWeb.md)
 - [Call a phax Controller from command line](3_callControllerCli.md)
-- [Make a same action callable with phax AND symfony default route](4_multiController.md)
+- [Make a same action callable with phax AND symfony default route](4_hybridController.md)
 - [Tips](5_tips.md)
 

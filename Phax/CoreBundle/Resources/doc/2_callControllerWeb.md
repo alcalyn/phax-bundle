@@ -120,7 +120,7 @@ is to reuse controller that you're actually using for normal controller,
 but also call this controller with phax.<br />
 It is a factorization purpose.<br />
 This page could make your happiness for today:
-[Make a same action callable with phax AND symfony default route](4_multiController.md)
+[Make a same action callable with phax AND symfony default route](4_hybridController.md)
 
 
 ### Links
@@ -130,5 +130,5 @@ This page could make your happiness for today:
 - [Create a phax Controller](1_createPhaxController.md)
 - [Call a phax Controller from web client](2_callControllerWeb.md)
 - [Call a phax Controller from command line](3_callControllerCli.md)
-- [Make a same action callable with phax AND symfony default route](4_multiController.md)
+- [Make a same action callable with phax AND symfony default route](4_hybridController.md)
 - [Tips](5_tips.md)

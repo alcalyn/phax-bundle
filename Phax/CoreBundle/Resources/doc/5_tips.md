@@ -37,5 +37,5 @@ Not very usefull, but sometimes...
 - [Create a phax Controller](1_createPhaxController.md)
 - [Call a phax Controller from web client](2_callControllerWeb.md)
 - [Call a phax Controller from command line](3_callControllerCli.md)
-- [Make a same action callable with phax AND symfony default route](4_multiController.md)
+- [Make a same action callable with phax AND symfony default route](4_hybridController.md)
 - [Tips](5_tips.md)

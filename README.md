@@ -29,7 +29,7 @@ I am not god, but all your questions concerning phax are in its documentation:
 - [Create a phax Controller](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Resources/doc/1_createPhaxController.md)
 - [Call a phax Controller from web client](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Resources/doc/2_callControllerWeb.md)
 - [Call a phax Controller from command line](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Resources/doc/3_callControllerCli.md)
-- [Make a same action callable with phax AND symfony default route](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Resources/doc/4_multiController.md)
+- [Make a same action callable with phax AND symfony default route](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Resources/doc/4_hybridController.md)
 - [Tips](https://github.com/alcalyn/phax-bundle/blob/master/Phax/CoreBundle/Resources/doc/5_tips.md)
 
 
